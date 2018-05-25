@@ -1,37 +1,22 @@
-// pages/index/index.js
-Page({  //注册当前页面
+// pages/movieDetail/movieDetail.js
+let appData = getApp();
+Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    msg: '一觉睡菿小时候1',
-    userInfo: {}
+    movieObj: {}
   },
-  handlrclick(){
-    //console.log('父元素')
-    wx.switchTab({
-      url: '/pages/list/list',
-      success() {
-        console.log('跳转成功');
-        
-      }
-    })
-  },
-  
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    wx.getUserInfo({
-      success: (data) => {
-        console.log(data);
-        //更新data里面的userInfo
-        this.setData({
-          userInfo: data.userInfo
-        })
-      }
+   onLoad: function (options) {
+    console.log(options);
+    let index = options.index;
+    this.setData({
+      movieObj: appData.data.movies[index]
     })
   },
 

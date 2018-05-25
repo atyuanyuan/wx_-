@@ -1,71 +1,42 @@
 // pages/list/list.js
-let datas = require('../..//datas/list-data'); //只能使用相对路径
-console.log('datas');
+let datas = require('../../datas/list-data');  // 只能使用相对路径
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  listArr: []
+    listArr: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //更新数据
+    // 更新数据
     this.setData({
       listArr: datas.list_data
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  toDetail(event) {
+    console.log(event);
+    // 获取点击板块的下标
+    let index = event.currentTarget.dataset.index;
+    // 跳转页面到详情页detail   传参的形式
+    wx.navigateTo({
+      url: '/pages/detail/detail?index=' + index
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
   
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  //点击轮播切换到详情页
+  swiperToDetail(event) {
+    //获取点击板块的下标
+    let index = event.target.dataset.index;
+    console.log(event);
+    // 跳转页面到详情页detail 传参的形式
+    wx.navigateTo({
+      url: '/pages/detail/detail?index=' + index
+    })
   }
+  
 })

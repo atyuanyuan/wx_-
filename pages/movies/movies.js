@@ -1,36 +1,27 @@
-// pages/index/index.js
-Page({  //注册当前页面
+// pages/movies/movies.js
+const MOVIE_URL = 'http://t.yushu.im/v2/movie/top250';
+let appData = getApp();
+Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    msg: '一觉睡菿小时候1',
-    userInfo: {}
+    movies: []
   },
-  handlrclick(){
-    //console.log('父元素')
-    wx.switchTab({
-      url: '/pages/list/list',
-      success() {
-        console.log('跳转成功');
-        
-      }
-    })
-  },
-  
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getUserInfo({
-      success: (data) => {
-        console.log(data);
-        //更新data里面的userInfo
+    // 发送请求获取数据
+    wx.request({
+      url: MOVIE_URL,
+      success: (response) => {
         this.setData({
-          userInfo: data.userInfo
-        })
+          movies: response.data.subjects
+        });
+        appData.data.movies = response.data.subjects;
       }
     })
   },
